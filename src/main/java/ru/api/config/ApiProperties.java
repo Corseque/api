@@ -16,6 +16,8 @@ public class ApiProperties {
     @Getter
     public static class EndPoint {
         private String manufacturerUrl;
+        private String categoryUrl;
+        private String productUrl;
     }
     @Setter
     @Getter

@@ -12,7 +12,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cloud.openfeign.support.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ru.api.category.api.CategoryGateway;
 import ru.api.manufacturer.api.ManufacturerGateway;
+import ru.api.product.api.ProductGateway;
 
 import java.util.concurrent.TimeUnit;
 
@@ -30,7 +32,21 @@ public class FeignConfig {
     private final ApiProperties apiProperties;
 
     @Bean
+    public CategoryGateway categoryGateway() {
+        return createClient(CategoryGateway.class, apiProperties.getEndPoint().getCategoryUrl());
+    }
+
+    @Bean
     public ManufacturerGateway manufacturerGateway() {
+        return createClient(ManufacturerGateway.class, apiProperties.getEndPoint().getManufacturerUrl());
+    }
+
+    @Bean
+    public ProductGateway productGateway() {
+        return createClient(ProductGateway.class, apiProperties.getEndPoint().getProductUrl());
+    }
+
+    private <T> T createClient(Class<T> type, String uri) {
         return Feign.builder()
                 .encoder(new SpringEncoder(messageConverters))
                 .decoder(new OptionalDecoder(new ResponseEntityDecoder(new SpringDecoder(this.messageConverters, this.customizers))))
@@ -53,7 +69,7 @@ public class FeignConfig {
                 .contract(new SpringMvcContract())
                 .logLevel(Logger.Level.FULL)
                 .logger(new Slf4jLogger(ManufacturerGateway.class))
-                .target(ManufacturerGateway.class, apiProperties.getEndPoint().getManufacturerUrl());
+                .target(type, uri);
     }
 
     private ErrorDecoder errorDecoder() {
