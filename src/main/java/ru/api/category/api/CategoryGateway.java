@@ -10,16 +10,16 @@ import java.util.List;
 public interface CategoryGateway {
 
     @GetMapping("/all")
-    List<CategoryDto> getManufacturerList();
+    List<CategoryDto> getCategoryList();
 
     @GetMapping("/{categoryId}")
-    ResponseEntity<CategoryDto> getManufacturer(@PathVariable(name = "categoryId") Long id);
+    ResponseEntity<CategoryDto> getCategory(@PathVariable(name = "categoryId") Long id);
 
     @PostMapping
-    ResponseEntity<CategoryDto> addManufacturer(@Validated @RequestBody CategoryDto categoryDto);
+    ResponseEntity<CategoryDto> addCategory(@Validated @RequestBody CategoryDto categoryDto);
 
     @PutMapping("/{categoryId}")
-    ResponseEntity<CategoryDto> updateManufacturer(@PathVariable(name = "categoryId") Long id,
+    ResponseEntity<CategoryDto> updateCategory(@PathVariable(name = "categoryId") Long id,
                                                 @Validated @RequestBody CategoryDto categoryDto);
 
     @DeleteMapping("/{categoryId}")
