@@ -16,6 +16,9 @@ public interface UserGateway {
     @GetMapping("/{userId}")
     ResponseEntity<?> getUser(@PathVariable(name = "userId") Long id);
 
+    @GetMapping("/{username}")
+    public ResponseEntity<?> getUser(@PathVariable(name = "username") String username);
+
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> addUser(@Validated @RequestBody UserDto userDto);
