@@ -17,7 +17,7 @@ public interface UserGateway {
     ResponseEntity<?> getUser(@PathVariable(name = "userId") Long id);
 
     @GetMapping("/{username}")
-    public ResponseEntity<?> getUser(@PathVariable(name = "username") String username);
+    public ResponseEntity<?> getUserByUsername(@PathVariable(name = "username") String username);
 
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
