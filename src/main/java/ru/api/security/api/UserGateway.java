@@ -1,5 +1,6 @@
 package ru.api.security.api;
 
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,11 @@ public interface UserGateway {
     @GetMapping("/{userId}")
     ResponseEntity<?> getUser(@PathVariable(name = "userId") Long id);
 
-    @PostMapping
+    @GetMapping
+    ResponseEntity<?> getUserByUsername(@Validated @RequestBody UserDto userDto);
+
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
     ResponseEntity<?> addUser(@Validated @RequestBody UserDto userDto);
 
     @PutMapping("/{userId}")
