@@ -19,6 +19,7 @@ public class ApiProperties {
         private String categoryUrl;
         private String productUrl;
         private String userUrl;
+        private String authenticationUrl;
     }
     @Setter
     @Getter
