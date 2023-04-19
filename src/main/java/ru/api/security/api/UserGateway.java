@@ -10,17 +10,20 @@ import java.util.List;
 public interface UserGateway {
 
     @GetMapping("/all")
-    List<UserDto> getUserList();
+    List<UserDto> getUserList(@RequestHeader("Authorization") String token);
 
     @GetMapping("/{userId}")
-    ResponseEntity<?> getUser(@PathVariable(name = "userId") Long id);
+    ResponseEntity<?> getUser(@RequestHeader("Authorization") String token,
+                              @PathVariable(name = "userId") Long id);
 
     @PostMapping("/register")
     ResponseEntity<?> addUser(@Validated @RequestBody UserDto userDto);
 
     @PutMapping("/{userId}")
-    ResponseEntity<?> updateUser(@PathVariable(name = "userId") Long id,
-                                        @Validated @RequestBody UserDto userDto);
+    ResponseEntity<?> updateUser(@RequestHeader("Authorization") String token,
+                                 @PathVariable(name = "userId") Long id,
+                                 @Validated @RequestBody UserDto userDto);
     @DeleteMapping("/{userId}")
-    void deleteById(@PathVariable(name = "userId") Long id);
+    void deleteById(@RequestHeader("Authorization") String token,
+                    @PathVariable(name = "userId") Long id);
 }
