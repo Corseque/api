@@ -10,18 +10,22 @@ import java.util.List;
 public interface CategoryGateway {
 
     @GetMapping("/all")
-    List<CategoryDto> getCategoryList();
+    List<CategoryDto> getCategoryList(@RequestHeader("Authorization") String token);
 
     @GetMapping("/{categoryId}")
-    ResponseEntity<CategoryDto> getCategory(@PathVariable(name = "categoryId") Long id);
+    ResponseEntity<CategoryDto> getCategory(@RequestHeader("Authorization") String token,
+                                            @PathVariable(name = "categoryId") Long id);
 
     @PostMapping
-    ResponseEntity<CategoryDto> addCategory(@Validated @RequestBody CategoryDto categoryDto);
+    ResponseEntity<CategoryDto> addCategory(@RequestHeader("Authorization") String token,
+                                            @Validated @RequestBody CategoryDto categoryDto);
 
     @PutMapping("/{categoryId}")
-    ResponseEntity<CategoryDto> updateCategory(@PathVariable(name = "categoryId") Long id,
-                                                @Validated @RequestBody CategoryDto categoryDto);
+    ResponseEntity<CategoryDto> updateCategory(@RequestHeader("Authorization") String token,
+                                               @PathVariable(name = "categoryId") Long id,
+                                               @Validated @RequestBody CategoryDto categoryDto);
 
     @DeleteMapping("/{categoryId}")
-    void deleteById(@PathVariable(name = "categoryId") Long id);
+    void deleteById(@RequestHeader("Authorization") String token,
+                    @PathVariable(name = "categoryId") Long id);
 }

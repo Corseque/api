@@ -10,17 +10,21 @@ import java.util.List;
 public interface ProductGateway {
 
     @GetMapping("/all")
-    List<ProductDto> getProductsList();
+    List<ProductDto> getProductsList(@RequestHeader("Authorization") String token);
     @GetMapping("/{productId}")
-    ResponseEntity<ProductDto> getProduct(@PathVariable(name = "productId") Long id);
+    ResponseEntity<ProductDto> getProduct(@RequestHeader("Authorization") String token,
+                                          @PathVariable(name = "productId") Long id);
 
     @PostMapping
-    ResponseEntity<ProductDto> addProduct(@Validated @RequestBody ProductDto productDto);
+    ResponseEntity<ProductDto> addProduct(@RequestHeader("Authorization") String token,
+                                          @Validated @RequestBody ProductDto productDto);
 
     @PutMapping("/{productId}")
-    ResponseEntity<ProductDto> updateProduct(@PathVariable(name = "productId") Long id,
-                                           @Validated @RequestBody ProductDto productDto);
+    ResponseEntity<ProductDto> updateProduct(@RequestHeader("Authorization") String token,
+                                             @PathVariable(name = "productId") Long id,
+                                             @Validated @RequestBody ProductDto productDto);
 
     @DeleteMapping("/{productId}")
-    void deleteById(@PathVariable(name = "productId") Long id);
+    void deleteById(@RequestHeader("Authorization") String token,
+                    @PathVariable(name = "productId") Long id);
 }

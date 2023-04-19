@@ -9,19 +9,23 @@ import java.util.List;
 
 public interface ManufacturerGateway {
     @GetMapping("/all")
-    List<ManufacturerDto> getManufacturerList();
+    List<ManufacturerDto> getManufacturerList(@RequestHeader("Authorization") String token);
 
     @GetMapping("/{manufacturerId}")
-    ResponseEntity<ManufacturerDto> getManufacturer(@PathVariable(name = "manufacturerId") Long id);
+    ResponseEntity<ManufacturerDto> getManufacturer(@RequestHeader("Authorization") String token,
+                                                    @PathVariable(name = "manufacturerId") Long id);
 
 
     @PostMapping
-    ResponseEntity<ManufacturerDto> addManufacturer(@Validated @RequestBody ManufacturerDto manufacturerDto);
+    ResponseEntity<ManufacturerDto> addManufacturer(@RequestHeader("Authorization") String token,
+                                                    @Validated @RequestBody ManufacturerDto manufacturerDto);
 
     @PutMapping("/{manufacturerId}")
-    ResponseEntity<ManufacturerDto> updateManufacturer(@PathVariable(name = "manufacturerId") Long id,
-                                                @Validated @RequestBody ManufacturerDto manufacturerDto);
+    ResponseEntity<ManufacturerDto> updateManufacturer(@RequestHeader("Authorization") String token,
+                                                       @PathVariable(name = "manufacturerId") Long id,
+                                                       @Validated @RequestBody ManufacturerDto manufacturerDto);
 
     @DeleteMapping("/{manufacturerId}")
-    void deleteById(@PathVariable(name = "manufacturerId") Long id);
+    void deleteById(@RequestHeader("Authorization") String token,
+                    @PathVariable(name = "manufacturerId") Long id);
 }
