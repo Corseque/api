@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import ru.api.category.api.CategoryGateway;
 import ru.api.manufacturer.api.ManufacturerGateway;
 import ru.api.product.api.ProductGateway;
+import ru.api.security.api.AuthenticationGateway;
 import ru.api.security.api.UserGateway;
 
 import java.util.concurrent.TimeUnit;
@@ -50,6 +51,11 @@ public class FeignConfig {
     @Bean
     public UserGateway userGateway() {
         return createClient(UserGateway.class, apiProperties.getEndPoint().getUserUrl());
+    }
+
+    @Bean
+    public AuthenticationGateway authenticationGateway() {
+        return createClient(AuthenticationGateway.class, apiProperties.getEndPoint().getAuthenticationUrl());
     }
 
     private <T> T createClient(Class<T> type, String uri) {
