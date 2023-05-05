@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'ru'
-version = '0.0.15'
+version = '0.0.20'
 sourceCompatibility = '11'
 
 configurations {
@@ -29,14 +29,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
-    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
     compileOnly 'org.projectlombok:lombok'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
-
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
-    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
