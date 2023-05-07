@@ -26,6 +26,10 @@ public class ProductDto {
     @Digits(integer = 6, fraction = 2)
     private BigDecimal cost;
 
+    @DecimalMin(value = "0.0", inclusive = false)
+    @Digits(integer = 6, fraction = 2)
+    private BigDecimal old_cost;
+
     @PastOrPresent
     private LocalDate date;
 
