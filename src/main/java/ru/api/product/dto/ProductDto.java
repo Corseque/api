@@ -5,6 +5,7 @@ import ru.api.category.dto.CategoryDto;
 import ru.api.manufacturer.dto.ManufacturerDto;
 
 import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
@@ -14,7 +15,9 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductDto {
+public class ProductDto implements Serializable {
+
+    static final long serialVersionUID = -6405971368848558070L;
 
     private Long id;
 
@@ -41,6 +44,25 @@ public class ProductDto {
 
     @NotNull
     private Set<CategoryDto> categories;
+
+    @Override
+    public String toString() {
+        StringBuilder product = new StringBuilder("ProductDto{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", cost=" + cost +
+                ", old_cost=" + old_cost +
+                ", date=" + date +
+                ", status='" + status + '\'' +
+                ", manufacturer=" + manufacturer.getName() +
+                ", categories=");
+        for (CategoryDto category: categories) {
+            product.append(category.getTitle()).append(", ");
+        }
+        product.delete(product.length() - 2, product.length() - 1);
+        product.append("}");
+        return product.toString();
+    }
 
 
 }
