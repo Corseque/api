@@ -59,7 +59,7 @@ public class ProductDto implements Serializable {
         for (CategoryDto category: categories) {
             product.append(category.getTitle()).append(", ");
         }
-        product.delete(product.length() - 2, product.length() - 1);
+        product.delete(product.length() - 3, product.length() - 1);
         product.append("}");
         return product.toString();
     }
