@@ -2,9 +2,11 @@ package ru.api.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import ru.api.security.validation.FieldMatch;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Builder
@@ -12,6 +14,8 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Setter
 @Getter
+@FieldMatch(firstFieldName = "password", secondFieldName = "matchingPassword",
+        message = "The password must match")
 public class UserDto {
 
     @JsonIgnore
@@ -24,6 +28,10 @@ public class UserDto {
     @NotBlank
     @Size(min = 8, message = "password length must be grater than 8 letters")
     private String password;
+
+    @NotNull(message = "is required")
+    @Size(min = 8, message = "password length must be grater than 8 letters")
+    private String matchingPassword;
 
     @NotBlank
     private String firstname;
