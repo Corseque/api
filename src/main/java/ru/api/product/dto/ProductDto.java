@@ -1,6 +1,7 @@
 package ru.api.product.dto;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import ru.api.category.dto.CategoryDto;
 import ru.api.manufacturer.dto.ManufacturerDto;
 
@@ -34,9 +35,10 @@ public class ProductDto implements Serializable {
     private BigDecimal old_cost;
 
     @PastOrPresent
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
 
-    @NotNull
+    @NotBlank
     private String status;
 
     @NotNull

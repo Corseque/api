@@ -1,4 +1,4 @@
-package ru.api.security;
+package ru.api.security.dto;
 
 import lombok.*;
 

@@ -3,7 +3,7 @@ package ru.api.security.api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.api.security.UserDto;
+import ru.api.security.dto.UserDto;
 
 import java.util.List;
 

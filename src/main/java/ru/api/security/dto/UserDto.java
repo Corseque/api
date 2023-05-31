@@ -1,4 +1,4 @@
-package ru.api.security;
+package ru.api.security.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
