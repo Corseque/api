@@ -19,33 +19,26 @@ import java.util.Set;
 public class ProductDto implements Serializable {
 
     static final long serialVersionUID = -6405971368848558070L;
-
     private Long id;
-
     @NotBlank
     private String title;
-
     @NotNull
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer = 6, fraction = 2)
     private BigDecimal cost;
-
     @DecimalMin(value = "0.0", inclusive = false)
     @Digits(integer = 6, fraction = 2)
     private BigDecimal old_cost;
-
     @PastOrPresent
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate date;
-
     @NotBlank
     private String status;
-
     @NotNull
     private ManufacturerDto manufacturer;
-
     @NotNull
     private Set<CategoryDto> categories;
+
 
     @Override
     public String toString() {
